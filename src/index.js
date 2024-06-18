@@ -15,6 +15,10 @@ function onSearch(evt) {
   const form= evt.target;
   let searchQuery = form.elements.searchQuery.value;
 
+  if (!searchQuery) {
+    return Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+  }
+
   getImage(searchQuery)
   .then(({hits}) => {
     if (!hits.length) {

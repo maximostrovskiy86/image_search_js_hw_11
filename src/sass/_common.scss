@@ -21,13 +21,14 @@ img {
   //justify-content: center;
   flex-wrap: wrap;
   margin-left: -15px;
-  //margin-top: -15px;
+  margin-top: -15px;
   padding: 25px 0;
   .photo-card {
     flex-basis: calc((100% - 3 * 15px) / 3);
     margin-left: 15px;
     margin-top: 15px;
     .thumb {
+      display: block;
       height: 400px;
       img {
         height: 100%;

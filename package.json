@@ -1,9 +1,9 @@
 {
   "name": "image_search_js_hw_11",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "version": "1.0.0",
   "description": "",
   "homepage": "https://goitacademy.github.io/image_search_js_hw_11",
-  "main": "index.js",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /image_search_js_hw_11/"
