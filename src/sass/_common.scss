@@ -1,0 +1,78 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.gallery {
+  display: flex;
+  //justify-content: center;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  //margin-top: -15px;
+  padding: 25px 0;
+  .photo-card {
+    flex-basis: calc((100% - 3 * 15px) / 3);
+    margin-left: 15px;
+    margin-top: 15px;
+    .thumb {
+      height: 400px;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.search-button {
+  width: 150px;
+  height: 40px;
+  background-color: #506ae7;
+  color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: #3f51b5;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+input[name="searchQuery"] {
+  height: 40px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  .photo-card {
+    flex-basis: calc((100% - 2 * 15px) / 2);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .photo-card {
+    flex-basis: calc((100% - 1 * 15px) / 1);
+  }
+}
+
+
+

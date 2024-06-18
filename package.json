@@ -2,14 +2,24 @@
   "name": "image_search_js_hw_11",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://goitacademy.github.io/image_search_js_hw_11",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /image_search_js_hw_11/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.12.0"
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^2.0.1"
+  },
+  "dependencies": {
+    "modern-normalize": "^2.0.0",
+    "notiflix": "^3.2.7",
+    "simplelightbox": "^2.14.3"
   }
 }

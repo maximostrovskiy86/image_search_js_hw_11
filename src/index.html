@@ -1,15 +1,33 @@
-<!doctype html>
+<!doctype HTML>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <h1>Example title</h1>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page title</title>
+  <link
+    rel="stylesheet"
+    href="../node_modules/notiflix/dist/notiflix-3.2.7.min.css"
+  />  <link rel="stylesheet" href="./sass/index.scss" />
+</head>
+<body>
+<header>
+  <h1>Search image</h1>
+  <form class="search-form" id="search-form">
+    <input
+      type="text"
+      name="searchQuery"
+      autocomplete="off"
+      placeholder="Search images..."
+    />
+    <button type="submit" class="search-button">Search</button>
+  </form>
+</header>
+<main>
+  <div class="gallery">
+    <!-- Карточки изображений -->
+  </div>
+</main>
+<script src="../node_modules/notiflix/dist/notiflix-notify-aio-3.2.7.min.js"></script>
+<script type="module" src="./index.js"></script>
+</body>
 </html>
