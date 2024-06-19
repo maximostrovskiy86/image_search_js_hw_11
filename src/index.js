@@ -7,12 +7,15 @@ import { fetchAllImage } from './js/API/api';
 const onClearDataFunction = (e) => {
   refs.gallery.innerHTML = '';
 }
+
+let page = 1;
+
 function onSearch(evt) {
   evt.preventDefault();
 
   onClearDataFunction();
 
-  const form= evt.target;
+  const form = evt.target;
   let searchQuery = form.elements.searchQuery.value;
 
   if (!searchQuery) {
@@ -27,11 +30,20 @@ function onSearch(evt) {
     return renderImageToGallery(hits);
   })
 
+
   evt.target.elements.searchQuery.value = '';
 }
 export const getImage = async (searchQuery) => {
   try {
     const response = await fetchAllImage(searchQuery);
+
+    page += 1
+
+    if (page > 1) {
+      refs.loadMoreBtn.textContent = "Fetch more image";
+      refs.loadMoreBtn.classList.remove("hidden");
+    }
+
     return response.json();
   } catch (error) {
     console.log("ERROR", error);

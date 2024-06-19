@@ -1,0 +1,13 @@
+@import "../base/variables";
+
+%btn {
+  padding: $button-padding;
+  background-color: $primary-bgColor;
+  color: $primary-color;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: $colorBgForHover;
+  }
+}

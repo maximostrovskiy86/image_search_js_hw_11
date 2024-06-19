@@ -1,12 +1,3 @@
-@import '~node_modules/modern-normalize/modern-normalize.css';
-
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 h1 {
   text-align: center;
 }
@@ -39,28 +30,10 @@ img {
   }
 }
 
-.search-button {
-  width: 150px;
-  height: 40px;
-  background-color: #506ae7;
-  color: #ffffff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 200ms;
-  &:hover {
-    background-color: #3f51b5;
-  }
-}
-
 .info {
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
-}
-
-input[name="searchQuery"] {
-  height: 40px;
-  border-radius: 10px;
 }
 
 @media screen and (max-width: 1200px) {

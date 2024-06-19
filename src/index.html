@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="./sass/index.scss" />
 </head>
 <body>
-<header>
+<header class="header">
+  <div class="container">
   <h1>Search image</h1>
   <form class="search-form" id="search-form">
     <input
@@ -19,11 +20,15 @@
     />
     <button type="submit" class="search-button">Search</button>
   </form>
+  </div>
 </header>
 <main>
   <div class="gallery">
     <!-- Карточки изображений -->
   </div>
+<!--  <div class="wrap-btn">-->
+    <button type="button" class="load-more-btn hidden">Fetch image</button>
+<!--  </div>-->
 </main>
 <script src="../node_modules/notiflix/dist/notiflix-notify-aio-3.2.7.min.js"></script>
 <script type="module" src="./index.js"></script>

@@ -1,0 +1,5 @@
+@mixin centeredFlex($type) {
+  display: $type;
+  justify-content: space-between;
+  align-items: center;
+}
