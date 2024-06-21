@@ -1,0 +1,36 @@
+@import '../utils/mixin';
+@import '../utils/placholders';
+
+.photo-card {
+  flex-basis: calc((100% - 3 * 15px) / 3);
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.thumb {
+  display: block;
+  height: 400px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  @extend %centeredHorizontalFlex;
+  padding: 0 15px;
+}
+
+@media screen and (max-width: 1200px) {
+  .photo-card {
+    flex-basis: calc((100% - 2 * 15px) / 2);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .photo-card {
+    flex-basis: calc((100% - 1 * 15px) / 1);
+  }
+}

@@ -1,58 +1,96 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './js/const/refs';
-import { fetchAllImage } from './js/API/api';
+import { fetchAllImage, incrementPage, resetPage } from './js/API/api';
 
-const onClearDataFunction = (e) => {
+let searchQuery = '';
+const onClearDataFunction = () => {
   refs.gallery.innerHTML = '';
-}
-
-let page = 1;
+};
 
 function onSearch(evt) {
   evt.preventDefault();
+  resetPage();
+
+  const form = evt.target;
+  searchQuery = form.elements.searchQuery.value;
+
+  if (!searchQuery) {
+    return Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.',
+    );
+  }
 
   onClearDataFunction();
 
-  const form = evt.target;
-  let searchQuery = form.elements.searchQuery.value;
-
-  if (!searchQuery) {
-    return Notify.failure("Sorry, there are no images matching your search query. Please try again.");
-  }
-
-  getImage(searchQuery)
-  .then(({hits}) => {
+  getImage(searchQuery).then(({ hits }) => {
     if (!hits.length) {
-      Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+      Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.',
+      );
     }
-    return renderImageToGallery(hits);
-  })
 
+    const page = incrementPage();
+
+    if (page > 1 && hits.length >= 4) {
+      refs.loadMoreBtn.textContent = 'Fetch more image';
+      refs.loadMoreBtn.classList.remove('hidden');
+    }
+
+    return renderImageToGallery(hits);
+  });
 
   evt.target.elements.searchQuery.value = '';
 }
-export const getImage = async (searchQuery) => {
+
+const getImage = async searchQuery => {
   try {
     const response = await fetchAllImage(searchQuery);
-
-    page += 1
-
-    if (page > 1) {
-      refs.loadMoreBtn.textContent = "Fetch more image";
-      refs.loadMoreBtn.classList.remove("hidden");
-    }
-
     return response.json();
   } catch (error) {
-    console.log("ERROR", error);
+    console.log('ERROR', error);
   }
-}
+};
 
-const renderImageToGallery = (hits) => {
-  const imageMarkup =  hits.map(({webformatURL, tags, likes, views, comments, downloads, largeImageURL}) => {
-    return `<div class="photo-card">
+const onLoadMore = async () => {
+
+  await fetchAllImage(searchQuery)
+    .then(response => response.json())
+    .then(({ hits }) => {
+
+      if (hits.length < 4) {
+        refs.loadMoreBtn.classList.add('hidden');
+      }
+
+      return renderImageToGallery(hits);
+    })
+    .catch(err => console.log(err));
+
+  incrementPage();
+
+  setTimeout(() => {
+    const element = refs.loadMoreBtn;
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, 0);
+};
+
+const renderImageToGallery = hits => {
+  const imageMarkup = hits
+    .map(
+      ({
+         webformatURL,
+         tags,
+         likes,
+         views,
+         comments,
+         downloads,
+         largeImageURL,
+       }) => {
+        return `<div class="photo-card">
     <a class="thumb" href=${largeImageURL}>
       <img src=${webformatURL} alt=${tags} loading="lazy"/>
     </a>
@@ -71,21 +109,23 @@ const renderImageToGallery = (hits) => {
     </p>
     </div>
   </div>`;
-  }).join('');
+      },
+    )
+    .join('');
 
   refs.gallery.insertAdjacentHTML('beforeend', imageMarkup);
 
-  let lightbox = new SimpleLightbox(".gallery a", {
+  let lightbox = new SimpleLightbox('.gallery a', {
     preloading: true,
     isAnimating: false,
-    captionType: "attr",
-    captionsData: "alt",
-    captionPosition: "top",
+    captionType: 'attr',
+    captionsData: 'alt',
+    captionPosition: 'top',
     captionDelay: 250,
   });
 
   lightbox.refresh();
-}
+};
 
-
-refs.form.addEventListener("submit", onSearch);
+refs.form.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);

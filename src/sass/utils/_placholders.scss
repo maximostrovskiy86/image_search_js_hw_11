@@ -1,4 +1,4 @@
-@import "../base/variables";
+@import '../base/variables';
 
 %btn {
   padding: $button-padding;
@@ -10,4 +10,9 @@
   &:hover {
     background-color: $colorBgForHover;
   }
+}
+
+%centeredHorizontalFlex {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,11 +1,12 @@
-@import "./base/normalize";
-@import "./base/variables";
-@import "./utils/placholders";
-@import "./utils/mixin";
+@import './base/normalize';
+@import './base/variables';
+@import './utils/placholders';
+@import './utils/mixin';
 
-@import "./layout/header";
+@import './layout/header';
 
-@import "./components/container";
-@import "./components/input";
-@import "./components/button";
-@import './common';
+@import './components/gallery';
+@import './components/container';
+@import './components/input';
+@import './components/button';
+@import 'components/cardphoto';

@@ -1,34 +1,35 @@
-<!doctype HTML>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page title</title>
-  <link rel="stylesheet" href="../node_modules/notiflix/dist/notiflix-3.2.7.min.css" />
+  <link
+    rel="stylesheet"
+    href="../node_modules/notiflix/dist/notiflix-3.2.7.min.css"
+  />
   <link rel="stylesheet" href="./sass/index.scss" />
 </head>
 <body>
 <header class="header">
   <div class="container">
-  <h1>Search image</h1>
-  <form class="search-form" id="search-form">
-    <input
-      type="text"
-      name="searchQuery"
-      autocomplete="off"
-      placeholder="Search images..."
-    />
-    <button type="submit" class="search-button">Search</button>
-  </form>
+    <h1>Search image</h1>
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+      <button type="submit" class="search-button">Search</button>
+    </form>
   </div>
 </header>
 <main>
   <div class="gallery">
     <!-- Карточки изображений -->
   </div>
-<!--  <div class="wrap-btn">-->
-    <button type="button" class="load-more-btn hidden">Fetch image</button>
-<!--  </div>-->
+  <button type="button" class="load-more-btn  js-load-more hidden">Fetch image</button>
 </main>
 <script src="../node_modules/notiflix/dist/notiflix-notify-aio-3.2.7.min.js"></script>
 <script type="module" src="./index.js"></script>

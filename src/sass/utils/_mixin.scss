@@ -1,5 +1,9 @@
-@mixin centeredFlex($type) {
+@mixin centeredAllFlex($type) {
   display: $type;
   justify-content: space-between;
   align-items: center;
+}
+@mixin centeredHorizontalFlex($type) {
+  display: $type;
+  justify-content: space-between;
 }

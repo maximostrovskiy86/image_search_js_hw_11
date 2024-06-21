@@ -17,15 +17,8 @@ Use a better box model (opinionated).
 
 html {
   /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
-  font-family:
-    system-ui,
-  'Segoe UI',
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif,
-  'Apple Color Emoji',
-  'Segoe UI Emoji';
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
   line-height: 1.15; /* 1. Correct the line height in all browsers. */
   -webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
   -moz-tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
@@ -87,12 +80,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Consolas,
-  'Liberation Mono',
-    Menlo,
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo,
     monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
@@ -194,8 +182,8 @@ Remove the inner border and padding in Firefox.
 Restore the focus styles unset by the previous rule.
 */
 
-  :-moz-focusring {
-    outline: 1px dotted ButtonText;
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
 }
 
 /**
@@ -203,8 +191,8 @@ Remove the additional ':invalid' styles in Firefox.
 See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
 */
 
-  :-moz-ui-invalid {
-    box-shadow: none;
+:-moz-ui-invalid {
+  box-shadow: none;
 }
 
 /**

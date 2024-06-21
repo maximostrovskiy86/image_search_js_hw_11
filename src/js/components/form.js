@@ -17,4 +17,3 @@
 // console.log("getImage()", getImage());
 //
 // // refs.form.addEventListener('click', getImage)
-
