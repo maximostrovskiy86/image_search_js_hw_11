@@ -24,7 +24,12 @@ function onSearch(evt) {
 
   onClearDataFunction();
 
-  getImage(searchQuery).then(({ hits }) => {
+  getImage(searchQuery).then(({ hits, totalHits }) => {
+
+    if (totalHits) {
+      Notify.success(`Hooray! We found ${totalHits} images.`);
+    }
+
     if (!hits.length) {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.',
@@ -54,13 +59,13 @@ const getImage = async searchQuery => {
 };
 
 const onLoadMore = async () => {
-
   await fetchAllImage(searchQuery)
     .then(response => response.json())
     .then(({ hits }) => {
 
-      if (hits.length < 4) {
+      if (hits.length < 6) {
         refs.loadMoreBtn.classList.add('hidden');
+        Notify.warning('We\'re sorry, but you\'ve reached the end of search results\n');
       }
 
       return renderImageToGallery(hits);

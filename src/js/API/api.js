@@ -14,8 +14,6 @@ export const resetPage = () => {
 };
 
 export const fetchAllImage = (searchQuery) => {
-
-  console.log('PAGE', page);
   const params = new URLSearchParams({
     key: KEY_API,
     q: searchQuery,
@@ -23,7 +21,7 @@ export const fetchAllImage = (searchQuery) => {
     orientation: 'horizontal',
     safesearch: true,
     page: page,
-    per_page: 4,
+    per_page: 6,
   });
 
   return fetch(`${BASE_URL}?${params}`);
