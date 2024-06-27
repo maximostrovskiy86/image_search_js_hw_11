@@ -44,7 +44,7 @@ function onSearch(evt) {
       refs.loadMoreBtn.textContent = 'Fetch more image';
       refs.loadMoreBtn.classList.remove('hidden');
     }
-
+    
     return renderImageToGallery(hits);
   });
 
@@ -53,7 +53,6 @@ function onSearch(evt) {
 
 const onLoadMore = async () => {
   await fetchAllImage(searchQuery)
-    .then(response => response.json())
     .then(({ hits }) => {
 
       if (hits.length < 6) {
