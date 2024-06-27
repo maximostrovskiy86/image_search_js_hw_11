@@ -13,7 +13,7 @@ export const resetPage = () => {
   page = 1;
 };
 
-export const fetchAllImage = (searchQuery) => {
+export const fetchAllImage = async (searchQuery) => {
   const params = new URLSearchParams({
     key: KEY_API,
     q: searchQuery,
@@ -24,5 +24,6 @@ export const fetchAllImage = (searchQuery) => {
     per_page: 6,
   });
 
-  return fetch(`${BASE_URL}?${params}`);
+  const response = await fetch(`${BASE_URL}?${params}`);
+  return response.json();
 };

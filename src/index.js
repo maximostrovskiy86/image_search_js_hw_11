@@ -1,8 +1,10 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './js/const/refs';
+import { renderImageToGallery } from './js/components/renderGallery';
+import { smoothScroll } from './js/components/smoothScroll';
 import { fetchAllImage, incrementPage, resetPage } from './js/API/api';
+
 
 let searchQuery = '';
 const onClearDataFunction = () => {
@@ -24,7 +26,7 @@ function onSearch(evt) {
 
   onClearDataFunction();
 
-  getImage(searchQuery).then(({ hits, totalHits }) => {
+  fetchAllImage(searchQuery).then(({ hits, totalHits }) => {
 
     if (totalHits) {
       Notify.success(`Hooray! We found ${totalHits} images.`);
@@ -49,15 +51,6 @@ function onSearch(evt) {
   evt.target.elements.searchQuery.value = '';
 }
 
-const getImage = async searchQuery => {
-  try {
-    const response = await fetchAllImage(searchQuery);
-    return response.json();
-  } catch (error) {
-    console.log('ERROR', error);
-  }
-};
-
 const onLoadMore = async () => {
   await fetchAllImage(searchQuery)
     .then(response => response.json())
@@ -73,64 +66,9 @@ const onLoadMore = async () => {
     .catch(err => console.log(err));
 
   incrementPage();
-
-  setTimeout(() => {
-    const element = refs.loadMoreBtn;
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }, 0);
+  smoothScroll();
 };
 
-const renderImageToGallery = hits => {
-  const imageMarkup = hits
-    .map(
-      ({
-         webformatURL,
-         tags,
-         likes,
-         views,
-         comments,
-         downloads,
-         largeImageURL,
-       }) => {
-        return `<div class="photo-card">
-    <a class="thumb" href=${largeImageURL}>
-      <img src=${webformatURL} alt=${tags} loading="lazy"/>
-    </a>
-  <div class="info">
-    <p class="info-item">
-      <b>Likes: ${likes}</b>
-    </p>
-    <p class="info-item">
-      <b>Views: ${views}</b>
-    </p>
-    <p class="info-item">
-      <b>Comments: ${comments}</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads:${downloads}</b>
-    </p>
-    </div>
-  </div>`;
-      },
-    )
-    .join('');
-
-  refs.gallery.insertAdjacentHTML('beforeend', imageMarkup);
-
-  let lightbox = new SimpleLightbox('.gallery a', {
-    preloading: true,
-    isAnimating: false,
-    captionType: 'attr',
-    captionsData: 'alt',
-    captionPosition: 'top',
-    captionDelay: 250,
-  });
-
-  lightbox.refresh();
-};
 
 refs.form.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
